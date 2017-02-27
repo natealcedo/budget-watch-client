@@ -5,7 +5,7 @@ class App extends Component {
     render() {
         return (
             <div >
-                <NavigationBar />
+                <NavigationBar path={this.props.location.pathname} />
                 { this.props.children }
             </div>
         );
