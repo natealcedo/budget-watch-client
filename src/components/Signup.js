@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, Grid, Message } from "semantic-ui-react";
 import axios from "axios";
-
+import validator from "validator";
 const styles = {
   marginTop: "5%",
   alignItems: "center",
@@ -21,6 +21,7 @@ class Signup extends React.Component {
     e.preventDefault();
     alert("Submit!");
   }
+  
   onBlur(e){
     e.persist();
     const errors = this.state.errors;
@@ -29,6 +30,11 @@ class Signup extends React.Component {
       this.setState({errors});
     }).catch(err => {
       delete errors[e.target.name];
+      if(e.target.name === "email"){
+        if(!validator.isEmail(e.target.value)){
+          errors[e.target.name] =`${e.target.name} is not a valid email adress`;
+        }
+      }
       this.setState({errors});
     });
   }
