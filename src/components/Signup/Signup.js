@@ -1,21 +1,16 @@
 import React from "react";
-import { Button, Form, Grid, Message } from "semantic-ui-react";
 import axios from "axios";
 import validator from "validator";
+import { connect } from "react-redux";
 
-import FormInputGroup from "./FormInputGroup";
-
-const styles = {
-  marginTop: "5%",
-  alignItems: "center",
-  textAlign:"left"
-};
+import SignupForm from "./SignupForm";
+import { isUserExists } from "../../actions/signupActions";
 
 class Signup extends React.Component {
   constructor(props){
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
-    this.validateInput = this.validateInput.bind(this);
+    this.checkUserExists = this.checkUserExists.bind(this);
     this.validatePassword = this.validatePassword.bind(this);
     this.onChange = this.onChange.bind(this);
     this.state ={
@@ -50,10 +45,10 @@ class Signup extends React.Component {
     });
   }
 
-  validateInput(e){
+  checkUserExists(e){
     e.persist();
     const errors = this.state.errors;
-    axios.get(`/api/users/${e.target.value}`).then(val => {
+    isUserExists(e.target.value).then(val => {
       errors[e.target.name] = `${e.target.name} is already being used`; 
       this.setState({errors});
     }).catch(err => {
@@ -69,48 +64,17 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <Grid centered style={styles}>
-        <Grid.Column width={6}>
-          <Form size="large">
-
-            <FormInputGroup
-              errors={this.state.errors.username}
-              name="username"
-              label="username"
-              onChange={this.onChange}
-              validateField={this.validateInput}
-            />
-
-          <FormInputGroup
-            name="email" 
-            label="email"
-            onChange={this.onChange}
-            validateField={this.validateInput}
-            errors={this.state.errors.email}
-          />
-
-        <FormInputGroup 
-          name="password"
-          label="password"
-          type="password"
+      <div>
+        <SignupForm
+          onSubmit={this.onSubmit} 
+          validatePassword={this.validatePassword}
+          checkUserExists={this.checkUserExists}
           onChange={this.onChange}
+          errors={this.state.errors}
         />
-
-      <FormInputGroup
-        name="passwordConfirm"
-        label="repeat password"
-        onChange={this.onChange}
-        validateField={this.validatePassword}
-        type="password"
-        errors={this.state.errors.password}
-      />
-
-      <Button color="blue" size="large" onClick={this.onSubmit} type="submit">Submit</Button>
-    </Form>
-  </Grid.Column> 
-</Grid>
+      </div>
     );
   }
 }
 
-export default Signup;
+export default connect(null,{ isUserExists})(Signup);

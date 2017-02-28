@@ -4,7 +4,7 @@ import { Route, IndexRoute } from "react-router";
 import App from "./components/App";
 import Login from "./components/Login.js";
 import PageNotFound from "./components/PageNotFound";
-import Signup from "./components/Signup";
+import Signup from "./components/Signup/Signup";
 
 export default(
     <Route>
