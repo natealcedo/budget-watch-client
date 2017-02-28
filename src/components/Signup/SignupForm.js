@@ -34,6 +34,8 @@ const SignupForm = ({errors, onChange, validatePassword, onSubmit, checkUserExis
         label="password"
         type="password"
         onChange={onChange}
+        validateField={validatePassword}
+        errors={errors.password}
       />
 
       <FormInputGroup
@@ -42,7 +44,7 @@ const SignupForm = ({errors, onChange, validatePassword, onSubmit, checkUserExis
         onChange={onChange}
         validateField={validatePassword}
         type="password"
-        errors={errors.password}
+        errors={errors.passwordConfirm}
       />
 
       <Button color="blue" size="large" onClick={onSubmit} type="submit">Submit</Button>

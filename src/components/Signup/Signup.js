@@ -3,7 +3,7 @@ import validator from "validator";
 import { connect } from "react-redux";
 
 import SignupForm from "./SignupForm";
-import { isUserExists } from "../../actions/signupActions";
+import { isUserExists, userSignUp } from "../../actions/signupActions";
 
 class Signup extends React.Component {
   constructor(props){
@@ -23,7 +23,16 @@ class Signup extends React.Component {
 
   onSubmit(e){
     e.preventDefault();
-    alert("Submit!");
+    const { userSignUp } = this.props;
+    const { username, password, passwordConfirm, email } = this.state;
+    const data = { username, password, passwordConfirm, email };
+    userSignUp(data)
+      .then(res => {
+        this.context.router.push("/login");
+      })
+      .catch( err =>{
+        this.setState({errors: err.response.data.errors });
+      });
   }
 
   validatePassword(e){
@@ -31,9 +40,11 @@ class Signup extends React.Component {
     const { password, passwordConfirm } = this.state;
     const errors = this.state.errors;
     if(!validator.equals(password, passwordConfirm)){
-      errors["password"] = "Password should be the same";
+      errors["password"] = "passwords must match";
+      errors["passwordConfirm"] = "passwords must match";
     } else {
       delete errors["password"];
+      delete errors["passwordConfirm"];
     }
     this.setState({errors});
   }
@@ -55,7 +66,7 @@ class Signup extends React.Component {
       delete errors[e.target.name];
       if(e.target.name === "email"){
         if(!validator.isEmail(e.target.value)){
-          errors[e.target.name] =`${e.target.name} is not a valid email adress`;
+          errors[e.target.name] = "must be a valid email address";
         }
       }
       this.setState({errors});
@@ -77,4 +88,13 @@ class Signup extends React.Component {
   }
 }
 
-export default connect(null,{ isUserExists})(Signup);
+Signup.propTypes = {
+  userSignUp: React.PropTypes.func.isRequired,
+  isUserExists: React.PropTypes.func.isRequired
+};
+
+Signup.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
+
+export default connect(null,{ isUserExists, userSignUp })(Signup);
