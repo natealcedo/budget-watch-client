@@ -3,6 +3,8 @@ import { Button, Form, Grid, Message } from "semantic-ui-react";
 import axios from "axios";
 import validator from "validator";
 
+import FormInputGroup from "./FormInputGroup";
+
 const styles = {
   marginTop: "5%",
   alignItems: "center",
@@ -29,7 +31,7 @@ class Signup extends React.Component {
     e.preventDefault();
     alert("Submit!");
   }
-  
+
   validatePassword(e){
     e.preventDefault();
     const { password, passwordConfirm } = this.state;
@@ -70,36 +72,43 @@ class Signup extends React.Component {
       <Grid centered style={styles}>
         <Grid.Column width={6}>
           <Form size="large">
-            <Form.Input onBlur={this.validateInput} name="username" label="Username" onChange={this.onChange} type="text"/>
-            {
-            this.state.errors.username && 
-            <Message size="tiny" negative><Message.Header>{this.state.errors.username}</Message.Header></Message>
-            }
-            <Form.Field onChange={this.onChange}onBlur={this.validateInput}> 
-              <label>Email</label>
-              <input name="email" type="text" placeholder="Type email" />
-            </Form.Field>
-            {
-            this.state.errors.email && 
-            <Message size="tiny" negative><Message.Header>{this.state.errors.email}</Message.Header></Message>
-            }
-            <Form.Field > 
-              <label>Password</label>
-              <input type="password" onChange={this.onChange}name="password" placeholder="Type password" />
-            </Form.Field>
-            <Form.Field > 
-              <label>Confirm Password</label>
-              <input type="password" name="passwordConfirm" onBlur={this.validatePassword}onChange={this.onChange} placeholder="Repeat password" />
-            </Form.Field>
-            {
-            this.state.errors.password && 
-            <Message size="tiny" negative><Message.Header>{this.state.errors.password}</Message.Header></Message>
-            }
 
-            <Button color="blue" size="large" onClick={this.onSubmit} type="submit">Submit</Button>
-          </Form>
-        </Grid.Column> 
-      </Grid>
+            <FormInputGroup
+              errors={this.state.errors.username}
+              name="username"
+              label="username"
+              onChange={this.onChange}
+              validateField={this.validateInput}
+            />
+
+          <FormInputGroup
+            name="email" 
+            label="email"
+            onChange={this.onChange}
+            validateField={this.validateInput}
+            errors={this.state.errors.email}
+          />
+
+        <FormInputGroup 
+          name="password"
+          label="password"
+          type="password"
+          onChange={this.onChange}
+        />
+
+      <FormInputGroup
+        name="passwordConfirm"
+        label="repeat password"
+        onChange={this.onChange}
+        validateField={this.validatePassword}
+        type="password"
+        errors={this.state.errors.password}
+      />
+
+      <Button color="blue" size="large" onClick={this.onSubmit} type="submit">Submit</Button>
+    </Form>
+  </Grid.Column> 
+</Grid>
     );
   }
 }
