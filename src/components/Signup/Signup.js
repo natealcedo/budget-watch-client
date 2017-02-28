@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import validator from "validator";
 import { connect } from "react-redux";
 
@@ -46,6 +45,7 @@ class Signup extends React.Component {
   }
 
   checkUserExists(e){
+    const { isUserExists } = this.props;
     e.persist();
     const errors = this.state.errors;
     isUserExists(e.target.value).then(val => {
