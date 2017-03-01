@@ -3,7 +3,7 @@ import { Menu } from "semantic-ui-react";
 import { Link } from "react-router";
 
 const NavigationBar = ({ path }) => (
-  <Menu inverted  size="huge" color="blue">
+  <Menu pointing inverted size="huge" color="blue">
     <Menu.Header>
       <Menu.Item as={Link} to="/">Budget Watch</Menu.Item>
     </Menu.Header> 
