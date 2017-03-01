@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Grid } from "semantic-ui-react";
+import { Button, Form, Grid, Message } from "semantic-ui-react";
 
 import FormInputGroup from "./FormInputGroup";
 
@@ -10,47 +10,53 @@ const styles = {
 };
 
 const SignupForm = ({errors, updateFieldState, validatePassword, onSubmit, checkUserExists, validateField}) => (
-  <Grid centered style={styles}>
-    <Grid.Column width={6}>
+  <div> 
+    <Message color="green" size="massive">
+      <Message.Header>Welcome!</Message.Header>
+      <p>Please fill in this form to get going!</p>
+    </Message>
+    <Grid centered style={styles}>
+      <Grid.Column width={6}>
+
       <Form size="large">
         <FormInputGroup
           errors={errors.username}
           name="username"
-          label="username"
+          label="Username"
           updateFieldState={updateFieldState}
           validateField={checkUserExists}
         />
 
-      <FormInputGroup
-        name="email" 
-        label="email"
-        updateFieldState={updateFieldState}
-        validateField={checkUserExists}
-        errors={errors.email}
-      />
+        <FormInputGroup
+          name="email" 
+          label="Email"
+          updateFieldState={updateFieldState}
+          validateField={checkUserExists}
+          errors={errors.email}
+        />
 
-      <FormInputGroup 
-        name="password"
-        label="password"
-        type="password"
-        updateFieldState={updateFieldState}
-      />
+        <FormInputGroup 
+          name="password"
+          label="Password"
+          type="password"
+          updateFieldState={updateFieldState}
+        />
 
-      <FormInputGroup
-        name="passwordConfirm"
-        label="repeat password"
-        updateFieldState={updateFieldState}
-        validateField={validatePassword}
-        type="password"
-        errors={errors.passwordConfirm}
-      />
+        <FormInputGroup
+          name="passwordConfirm"
+          label="Repeat Password"
+          updateFieldState={updateFieldState}
+          validateField={validatePassword}
+          type="password"
+          errors={errors.passwordConfirm}
+        />
 
-      <Button color="blue" size="large" onClick={onSubmit} type="submit">Submit</Button>
+        <Button color="blue" size="large" onClick={onSubmit} type="submit">Submit</Button>
 
       </Form>
-    </Grid.Column> 
-  </Grid>
-
+     </Grid.Column> 
+   </Grid>
+  </div>
 );
 
 SignupForm.propTypes = {

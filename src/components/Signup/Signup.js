@@ -1,6 +1,7 @@
 import React from "react";
 import validator from "validator";
 import { connect } from "react-redux";
+import { Message, Grid } from "semantic-ui-react";
 
 import SignupForm from "./SignupForm";
 import { isUserExists, userSignUp } from "../../actions/signupActions";
@@ -45,7 +46,6 @@ class Signup extends React.Component {
     } else {
       delete errors["passwordConfirm"];
     }
-    console.log(errors);
     this.setState({errors});
   }
 
@@ -75,7 +75,7 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div>
+      <div >
         <SignupForm
           onSubmit={this.onSubmit} 
           validatePassword={this.validatePassword}
