@@ -9,7 +9,7 @@ const styles = {
   textAlign:"left"
 };
 
-const SignupForm = ({errors, onChange, validatePassword, onSubmit, checkUserExists, validateField}) => (
+const SignupForm = ({errors, updateFieldState, validatePassword, onSubmit, checkUserExists, validateField}) => (
   <Grid centered style={styles}>
     <Grid.Column width={6}>
       <Form size="large">
@@ -17,14 +17,14 @@ const SignupForm = ({errors, onChange, validatePassword, onSubmit, checkUserExis
           errors={errors.username}
           name="username"
           label="username"
-          onChange={onChange}
+          updateFieldState={updateFieldState}
           validateField={checkUserExists}
         />
 
       <FormInputGroup
         name="email" 
         label="email"
-        onChange={onChange}
+        updateFieldState={updateFieldState}
         validateField={checkUserExists}
         errors={errors.email}
       />
@@ -33,15 +33,13 @@ const SignupForm = ({errors, onChange, validatePassword, onSubmit, checkUserExis
         name="password"
         label="password"
         type="password"
-        onChange={onChange}
-        validateField={validatePassword}
-        errors={errors.password}
+        updateFieldState={updateFieldState}
       />
 
       <FormInputGroup
         name="passwordConfirm"
         label="repeat password"
-        onChange={onChange}
+        updateFieldState={updateFieldState}
         validateField={validatePassword}
         type="password"
         errors={errors.passwordConfirm}
@@ -57,7 +55,7 @@ const SignupForm = ({errors, onChange, validatePassword, onSubmit, checkUserExis
 
 SignupForm.propTypes = {
   errors: React.PropTypes.object,
-  onChange: React.PropTypes.func.isRequired,
+  updateFieldState: React.PropTypes.func.isRequired,
   validatePassword: React.PropTypes.func.isRequired,
   checkUserExists: React.PropTypes.func.isRequired
 };

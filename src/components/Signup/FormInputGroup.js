@@ -5,9 +5,9 @@ const styles = {
   marginBottom: 10
 };
 
-const FormInputGroup = ({ validateField ,label, onChange, name, type, errors}) => (
+const FormInputGroup = ({ validateField ,label, updateFieldState, name, type, errors}) => (
   <div style={styles}>
-    <Form.Input onBlur={validateField} onChange={onChange} name={name} label={label}  type={type}/>
+    <Form.Input onBlur={validateField} onChange={updateFieldState} name={name} label={label}  type={type}/>
     {
     errors && 
     <Message size="tiny" negative><Message.Header>{errors}</Message.Header></Message>
@@ -17,10 +17,10 @@ const FormInputGroup = ({ validateField ,label, onChange, name, type, errors}) =
 
 FormInputGroup.propTypes = {
   name: React.PropTypes.string.isRequired,
-  onBlur: React.PropTypes.func,
+  validateField: React.PropTypes.func,
   type: React.PropTypes.string.isRequired,
   errors: React.PropTypes.string,
-  onChange: React.PropTypes.func.isRequired
+  updateFieldState: React.PropTypes.func.isRequired
 };
 
 FormInputGroup.defaultProps ={

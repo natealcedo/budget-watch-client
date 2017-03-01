@@ -6,6 +6,7 @@ import SignupForm from "./SignupForm";
 import { isUserExists, userSignUp } from "../../actions/signupActions";
 
 class Signup extends React.Component {
+
   constructor(props){
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
@@ -40,12 +41,11 @@ class Signup extends React.Component {
     const { password, passwordConfirm } = this.state;
     const errors = this.state.errors;
     if(!validator.equals(password, passwordConfirm)){
-      errors["password"] = "passwords must match";
       errors["passwordConfirm"] = "passwords must match";
     } else {
-      delete errors["password"];
       delete errors["passwordConfirm"];
     }
+    console.log(errors);
     this.setState({errors});
   }
 
@@ -80,7 +80,7 @@ class Signup extends React.Component {
           onSubmit={this.onSubmit} 
           validatePassword={this.validatePassword}
           checkUserExists={this.checkUserExists}
-          onChange={this.onChange}
+          updateFieldState={this.onChange}
           errors={this.state.errors}
         />
       </div>
