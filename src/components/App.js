@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import NavigationBar from "./NavigationBar";
+import "reset-css/reset.css";
+import "semantic-ui-css/semantic.min.css";
 
 class App extends Component {
   render() {
