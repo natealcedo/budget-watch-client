@@ -1,56 +1,59 @@
 import React from "react";
-import { Message, Form, Grid } from "semantic-ui-react";
+import { isUserExists } from "../../actions/loginActions.js";
+import { connect } from "react-redux";
+
+import LoginForm from "./LoginForm";
 
 class Login extends React.Component {
   constructor(props){
     super(props);
-    this.updateField = this.updateField.bind.this;
+    this.updateFieldState = this.updateFieldState.bind(this);
+    this.validateUserInput = this.validateUserInput.bind(this);
     this.state = {
-      input: "",
-      password: ""
+      userInput: "",
+      password: "",
+      errors: {}
     };
   }
 
-  validateUsername(e){
-
+  validateUserInput(e){
+    const errors = this.state.errors;
+    const { isUserExists } = this.props;
+    isUserExists(e.target.value).then(user => {
+      delete errors.userInput;
+      // setting state in the then or catch block because of async nature where ui doesnt
+      // update on time
+      this.setState({errors});
+    }).catch(err => {
+      errors.userInput = "User does not exist";
+      this.setState({errors});
+    });
   }
 
-  updateField(e){
-    console.log(this.props);
+  updateFieldState(e){
+    e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
     });
   }
 
   render() {
-    const style={
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      height: "60vh"
-    };
-
     return (
-      <div style={style}>
-        <Grid centered>
-          <Grid.Column width={6} size>
-            <Message
-              header="Welcome to Budget Watch" 
-              content="Fill in the form for more awesomeness"
-              attached
-              color="teal"
-            />
-            <Form className="attached fluid segment">
-              <Form.Field>
-                <label>Username or Email</label> 
-                <input type="text" placeholder="Type username" name="username" onChange={this.updateFieldState}/>
-              </Form.Field>
-            </Form> 
-          </Grid.Column>
-        </Grid>
-      </div>
+      <LoginForm 
+        errors={this.state.errors} 
+        updateFieldState={this.updateFieldState}
+        validateUserInput={this.validateUserInput}
+      />
     );
   }
 }
 
-export default Login;
+Login.propTypes = {
+  isUserExists: React.PropTypes.func.isRequired
+};
+
+Login.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
+
+export default connect(null, { isUserExists })(Login);
