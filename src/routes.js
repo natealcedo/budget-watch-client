@@ -2,7 +2,7 @@ import React from "react";
 import { Route, IndexRoute } from "react-router";
 
 import App from "./components/App";
-import Login from "./components/Login.js";
+import Login from "./components/Login/Login";
 import PageNotFound from "./components/PageNotFound";
 import Signup from "./components/Signup/Signup";
 
