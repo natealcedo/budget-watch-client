@@ -11,7 +11,7 @@ const styles = {
 
 const SignupForm = ({errors, updateFieldState, validatePassword, onSubmit, checkUserExists, validateField}) => (
   <div> 
-    <Message color="blue" size="massive">
+    <Message attached color="blue" size="large">
       <Message.Header>Welcome!</Message.Header>
       <p>Please fill in this form to get going!</p>
     </Message>
