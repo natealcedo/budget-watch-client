@@ -16,7 +16,7 @@ const SignupForm = ({errors, updateFieldState, validatePassword, onSubmit, check
       <p>Please fill in this form to get going!</p>
     </Message>
     <Grid centered style={styles}>
-      <Grid.Column width={6}>
+      <Grid.Column width={10}>
 
       <Form size="large">
         <FormInputGroup
