@@ -5,13 +5,14 @@ const style={
   marginBottom: 20
 };
 
-const LoginFormInputGroup = ({ updateFieldState, name, label, validateUserInput, errors }) => (
+const LoginFormInputGroup = ({ updateFieldState, type, name, label, validateUserInput, errors }) => (
   <div style={style}>
     <Form.Input
         onChange={updateFieldState} 
         label={label}
         name={name}
         onBlur={validateUserInput}
+        type={type}
     />
       {
       errors && 
@@ -27,7 +28,12 @@ LoginFormInputGroup.propTypes = {
   validateUserInput: React.PropTypes.func,
   errors: React.PropTypes.string,
   label: React.PropTypes.string.isRequired,
-  name: React.PropTypes.string.isRequired
+  name: React.PropTypes.string.isRequired,
+  type: React.PropTypes.string.isRequired
+};
+
+LoginFormInputGroup.defaultProps = {
+  type: "text"
 };
 
 export default LoginFormInputGroup;

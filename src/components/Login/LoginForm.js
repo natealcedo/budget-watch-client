@@ -14,7 +14,7 @@ const buttonStyle = {
   marginTop: 20
 };
 
-const LoginForm = ({ errors, userLogin, updateFieldState, isLoading, validateUserInput}) => (
+const LoginForm = ({ errors, loginSubmit, updateFieldState, isLoading, validateUserInput}) => (
   <div style={style}>
     <Grid centered>
       <Grid.Column width={10}>
@@ -32,6 +32,7 @@ const LoginForm = ({ errors, userLogin, updateFieldState, isLoading, validateUse
             errors={errors.userInput}
             updateFieldState={updateFieldState}
             validateUserInput={validateUserInput}
+            type="text"
           />
 
           <LoginFormInputGroup
@@ -39,12 +40,13 @@ const LoginForm = ({ errors, userLogin, updateFieldState, isLoading, validateUse
             label="password"
             errors={errors.password}
             updateFieldState={updateFieldState}
+            type="password"
           />
         </Form>
         <Button
           basic style={buttonStyle}
           loading={isLoading}
-          onClick={userLogin}
+          onClick={loginSubmit}
           size="large"
           primary>Login
         </Button>
@@ -57,7 +59,7 @@ LoginForm.propTypes = {
   errors: React.PropTypes.object,
   updateFieldState: React.PropTypes.func.isRequired,
   validateUserInput: React.PropTypes.func.isRequired,
-  userLogin: React.PropTypes.func.isRequired,
+  loginSubmit: React.PropTypes.func.isRequired,
   isLoading: React.PropTypes.bool.isRequired
 };
 

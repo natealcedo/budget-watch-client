@@ -1,6 +1,7 @@
 import React from "react";
-import { isUserExists } from "../../actions/loginActions.js";
+import { isUserExists, userLogin } from "../../actions/loginActions.js";
 import { connect } from "react-redux";
+import { isEmpty } from "lodash";
 
 import LoginForm from "./LoginForm";
 
@@ -9,9 +10,11 @@ class Login extends React.Component {
     super(props);
     this.updateFieldState = this.updateFieldState.bind(this);
     this.validateUserInput = this.validateUserInput.bind(this);
+    this.loginSubmit = this.loginSubmit.bind(this);
     this.state = {
       userInput: "",
       password: "",
+      isLoading: false,
       errors: {}
     };
   }
@@ -37,23 +40,50 @@ class Login extends React.Component {
     });
   }
 
+  loginSubmit(e){
+    const errors = this.state.errors;
+    const { userLogin } = this.props;
+    const userData = {
+      userInput: this.state.userInput,
+      password: this.state.password
+    };
+    e.preventDefault();
+    if(isEmpty(errors)){
+      // no errors
+      this.setState({ isLoading: true });  
+      userLogin(userData)
+        .then(res => {
+          this.context.router.push("/");
+        })
+        .catch(err => {
+          this.setState({
+            isLoading: false,
+            errors: err.response.data.errors
+          });
+        });
+    }
+  }
+
   render() {
     return (
       <LoginForm 
         errors={this.state.errors} 
         updateFieldState={this.updateFieldState}
         validateUserInput={this.validateUserInput}
+        loginSubmit={this.loginSubmit}
+        isLoading={this.state.isLoading}
       />
     );
   }
 }
 
 Login.propTypes = {
-  isUserExists: React.PropTypes.func.isRequired
+  isUserExists: React.PropTypes.func.isRequired,
+  userLogin: React.PropTypes.func.isRequired
 };
 
 Login.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-export default connect(null, { isUserExists })(Login);
+export default connect(null, { isUserExists, userLogin })(Login);
