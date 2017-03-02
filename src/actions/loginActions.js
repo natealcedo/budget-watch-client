@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import setJwtToken from "../utilities/setJwtToken";
+import setAxiosHeaders from "../utilities/setAxiosHeaders";
 import { SET_USER } from "../actions/actionTypes";
 
 
@@ -20,13 +20,21 @@ export function isUserExists(identifier){
 export function userLogin(data){
   return dispatch => {
     return axios.post("/api/authentication", data).then(res => {
+      console.log(res.data);
       const token = res.data.jwt;
       localStorage.setItem("jwt", token);
-      setJwtToken(token);
+      setAxiosHeaders(token);
       dispatch(setUser(jwtDecode(token)));
-      console.log(jwtDecode(token));
     }).catch(err=>{
-      console.log(err);
+      throw err;
     });
+  };
+}
+
+export function userLogout(){
+  return dispatch => {
+    localStorage.removeItem("jwt");
+    setAxiosHeaders(false);
+    dispatch(setUser({}));
   };
 }
