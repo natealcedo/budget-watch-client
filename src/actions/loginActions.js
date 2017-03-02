@@ -20,7 +20,6 @@ export function isUserExists(identifier){
 export function userLogin(data){
   return dispatch => {
     return axios.post("/api/authentication", data).then(res => {
-      console.log(res.data);
       const token = res.data.jwt;
       localStorage.setItem("jwt", token);
       setAxiosHeaders(token);
