@@ -1,7 +1,7 @@
 import React from "react";
 import validator from "validator";
 import { connect } from "react-redux";
-
+import { isEmpty } from "lodash";
 import SignupForm from "./SignupForm";
 import { isUserExists, userSignUp } from "../../actions/signupActions";
 
@@ -27,13 +27,15 @@ class Signup extends React.Component {
     const { userSignUp } = this.props;
     const { username, password, passwordConfirm, email } = this.state;
     const data = { username, password, passwordConfirm, email };
-    userSignUp(data)
-      .then(res => {
-        this.context.router.push("/login");
-      })
-      .catch( err =>{
-        this.setState({errors: err.response.data.errors });
-      });
+    if(isEmpty(this.state.errors)){
+      userSignUp(data)
+        .then(res => {
+          this.context.router.push("/login");
+        })
+        .catch( err =>{
+          this.setState({errors: err.response.data.errors });
+        });
+    }
   }
 
   validatePassword(e){
@@ -74,13 +76,13 @@ class Signup extends React.Component {
 
   render() {
     return (
-        <SignupForm
-          onSubmit={this.onSubmit} 
-          validatePassword={this.validatePassword}
-          checkUserExists={this.checkUserExists}
-          updateFieldState={this.onChange}
-          errors={this.state.errors}
-        />
+      <SignupForm
+        onSubmit={this.onSubmit} 
+        validatePassword={this.validatePassword}
+        checkUserExists={this.checkUserExists}
+        updateFieldState={this.onChange}
+        errors={this.state.errors}
+      />
     );
   }
 }
