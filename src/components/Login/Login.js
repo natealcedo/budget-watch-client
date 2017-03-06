@@ -18,6 +18,12 @@ class Login extends React.Component {
       errors: {}
     };
   }
+  
+  componentWillMount(){
+    if(this.props.isAuthenticated){
+      this.context.router.push("/");
+    }
+  }
 
   validateUserInput(e){
     const errors = this.state.errors;
@@ -79,11 +85,18 @@ class Login extends React.Component {
 
 Login.propTypes = {
   isUserExists: React.PropTypes.func.isRequired,
-  userLogin: React.PropTypes.func.isRequired
+  userLogin: React.PropTypes.func.isRequired,
+  isAuthenticated: React.PropTypes.bool.isRequired
 };
 
 Login.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-export default connect(null, { isUserExists, userLogin })(Login);
+function mapStateToProps(state){
+  return {
+    isAuthenticated: state.authentication.isAuthenticated
+  };
+}
+
+export default connect( mapStateToProps, { isUserExists, userLogin })(Login);

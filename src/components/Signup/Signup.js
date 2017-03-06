@@ -22,6 +22,12 @@ class Signup extends React.Component {
     };
   }
 
+  componentWillMount(){
+    if(this.props.isAuthenticated){
+      this.context.router.push("/");
+    }
+  }
+
   onSubmit(e){
     e.preventDefault();
     const { userSignUp } = this.props;
@@ -96,4 +102,10 @@ Signup.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-export default connect(null,{ isUserExists, userSignUp })(Signup);
+function mapStateToProps(state){
+  return {
+    isAuthenticated: state.authentication.isAuthenticated
+  }
+}
+
+export default connect( mapStateToProps, { isUserExists, userSignUp })(Signup);
