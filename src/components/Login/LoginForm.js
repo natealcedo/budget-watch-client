@@ -7,7 +7,7 @@ const style = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  height: "60vh"
+  height: "80vh"
 };
 
 const buttonStyle = {
