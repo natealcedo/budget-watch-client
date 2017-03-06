@@ -1,7 +1,13 @@
 import React from "react";
 
+const style={
+  padding: "10px"
+};
+
 const Welcome = (props) => (
-  <h1>Welcome to the home page!</h1>
+  <div style={style}>
+    <h1>Welcome</h1> 
+  </div>
 );
 
 export default Welcome;
