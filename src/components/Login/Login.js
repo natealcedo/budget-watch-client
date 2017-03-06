@@ -1,7 +1,6 @@
 import React from "react";
 import { isUserExists, userLogin } from "../../actions/loginActions.js";
 import { connect } from "react-redux";
-import { isEmpty } from "lodash";
 
 import LoginForm from "./LoginForm";
 
@@ -47,27 +46,21 @@ class Login extends React.Component {
   }
 
   loginSubmit(e){
-    const errors = this.state.errors;
     const { userLogin } = this.props;
     const userData = {
       userInput: this.state.userInput,
       password: this.state.password
     };
     e.preventDefault();
-    if(isEmpty(errors)){
-      // no errors
-      this.setState({ isLoading: true });  
-      userLogin(userData)
-        .then(res => {
-          this.context.router.push("/");
-        })
-        .catch(err => {
-          this.setState({
-            isLoading: false,
-            errors: err.response.data.errors
-          });
-        });
-    }
+    this.setState({ isLoading: true });  
+    userLogin(userData).then(res => {
+      this.context.router.push("/");
+    }).catch(err => {
+      this.setState({
+        isLoading: false,
+        errors: err.response.data.errors
+      });
+    });
   }
 
   render() {
