@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "semantic-ui-react";
+import { Menu, Dropdown} from "semantic-ui-react";
 import { Link, Button } from "react-router";
 import { connect } from "react-redux";
 
@@ -21,6 +21,12 @@ class NavigationBar extends React.Component {
     const { path, isAuthenticated } = this.props;
     const authenticatedLinks = (
       <Menu.Menu position="right">
+        <Dropdown item text="Entries">
+          <Dropdown.Menu>
+            <Dropdown.Item  as={Link} to="entries/addEntry">Add Entry</Dropdown.Item>
+            <Dropdown.Item  as={Link} to="entries">Entries</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         <Menu.Item  as={Button} onClick={this.onUserLogout}>Logout</Menu.Item>
       </Menu.Menu>
       );
@@ -29,9 +35,9 @@ class NavigationBar extends React.Component {
         <Menu.Item active={path==="/login"} as={Link} to="/login">Login</Menu.Item>
         <Menu.Item active={path==="/signup"} as={Link} to="/signup">Signup</Menu.Item>
       </Menu.Menu>
-      ); 
+    ); 
     return(
-      <Menu pointing inverted size="massive" color="blue">
+      <Menu pointing borderless inverted size="large" color="blue">
         <Menu.Header>
           <Menu.Item as={Link} to="/">Budget Watch</Menu.Item>
         </Menu.Header> 
