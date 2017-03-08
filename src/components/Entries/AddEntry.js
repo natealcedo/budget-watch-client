@@ -1,21 +1,28 @@
 import React from "react";
-import { dayOptions } from "./EntryOptions";
-import { Dropdown } from "semantic-ui-react";
+import { Container, Header } from "semantic-ui-react";
+
+import AddEntryForm from "./AddEntryForm";
 
 class AddEntry extends React.Component {
   render() {
-    const style={
+    const formStyle={
       display: "flex",
       justifyContent: "center",
-      alignItems: "center",
-      height: "80vh",
       flexDirection: "column",
-      padding: 10
+      marginTop: "10vh"
     };
-
+    const divStyle={
+      textAlign: "center",
+      marginTop: "5vh"
+    };
     return (
-      <div style={style}>
-        <Dropdown options={dayOptions}></Dropdown>
+      <div>
+        <div style={divStyle}>
+          <Header as="h1">Add Entries to Track where your money goes!</Header>
+        </div>
+        <Container style={formStyle}>
+          <AddEntryForm /> 
+        </Container>
       </div>
     );
   }
