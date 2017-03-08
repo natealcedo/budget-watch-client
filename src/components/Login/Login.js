@@ -1,6 +1,7 @@
 import React from "react";
 import { isUserExists, userLogin } from "../../actions/loginActions.js";
 import { connect } from "react-redux";
+import { addFlashMessage } from "../../actions/flashMessagesActions";
 
 import LoginForm from "./LoginForm";
 
@@ -55,6 +56,10 @@ class Login extends React.Component {
     this.setState({ isLoading: true });  
     userLogin(userData).then(res => {
       this.context.router.push("/");
+      this.props.addFlashMessage({
+        text: "Welcome",
+        type: "success"
+      });
     }).catch(err => {
       this.setState({
         isLoading: false,
@@ -92,4 +97,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect( mapStateToProps, { isUserExists, userLogin })(Login);
+export default connect( mapStateToProps, { isUserExists, userLogin, addFlashMessage })(Login);
