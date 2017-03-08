@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Grid, Message } from "semantic-ui-react";
+import { Button, Container, Form, Grid, Message } from "semantic-ui-react";
 
 import FormInputGroup from "./FormInputGroup";
 
@@ -10,7 +10,7 @@ const styles = {
 };
 
 const SignupForm = ({errors, updateFieldState, validatePassword, onSubmit, checkUserExists, validateField}) => (
-  <div> 
+  <Container> 
     <Message attached color="blue" size="large">
       <Message.Header>Welcome!</Message.Header>
       <p>Please fill in this form to get going!</p>
@@ -56,7 +56,7 @@ const SignupForm = ({errors, updateFieldState, validatePassword, onSubmit, check
       </Form>
      </Grid.Column> 
    </Grid>
-  </div>
+  </Container>
 );
 
 SignupForm.propTypes = {

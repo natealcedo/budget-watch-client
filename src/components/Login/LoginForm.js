@@ -1,5 +1,5 @@
 import React from "react";
-import { Message, Button, Grid, Form } from "semantic-ui-react";
+import { Message, Button, Grid, Form, Container } from "semantic-ui-react";
 
 import LoginFormInputGroup from "./LoginFormInputGroup";
 
@@ -15,7 +15,7 @@ const buttonStyle = {
 };
 
 const LoginForm = ({ errors, loginSubmit, updateFieldState, isLoading, validateUserInput}) => (
-  <div style={style}>
+  <Container style={style}>
     <Grid centered>
       <Grid.Column width={10}>
         <Message
@@ -52,7 +52,7 @@ const LoginForm = ({ errors, loginSubmit, updateFieldState, isLoading, validateU
         </Button>
       </Grid.Column>
     </Grid>
-  </div>
+  </Container>
 );
 
 LoginForm.propTypes = {
