@@ -15,6 +15,7 @@
     "reset-css": "^2.2.0",
     "semantic-ui-css": "^2.2.9",
     "semantic-ui-react": "^0.66.0",
+    "shortid": "^2.2.8",
     "validator": "^7.0.0"
   },
   "devDependencies": {
