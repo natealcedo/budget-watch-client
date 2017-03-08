@@ -1,4 +1,4 @@
-import { Message, Icon, Button } from "semantic-ui-react";
+import { Message } from "semantic-ui-react";
 import React from "react";
 
 class FlashMessage extends React.Component {
