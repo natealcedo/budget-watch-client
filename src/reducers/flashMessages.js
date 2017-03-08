@@ -10,13 +10,10 @@ export default function(state=[], action={}){
       {
         id: shortid.generate(),
         text: action.message.text,
-        type: action.message.type
       }
     ];
   case DELETE_FLASH_MESSAGE:
     const index = findIndex(state, { id: action.id }) ;
-    console.log(index);
-    console.log(action.id);
     if(index >= 0){
       return [
         ...state.slice(0,index),

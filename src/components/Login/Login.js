@@ -57,8 +57,7 @@ class Login extends React.Component {
     userLogin(userData).then(res => {
       this.context.router.push("/");
       this.props.addFlashMessage({
-        text: "Welcome",
-        type: "success"
+        text: "Welcome! Login Success!",
       });
     }).catch(err => {
       this.setState({
