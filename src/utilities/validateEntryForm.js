@@ -3,7 +3,6 @@ import { isEmpty } from "lodash";
 
 function validateEntryForm(data){
   const { amount, description, category, day, month, year } = data;
-  console.log(data);
   const errors = {};
   if(validator.isEmpty(amount)){
     errors.amount = "This field is required";

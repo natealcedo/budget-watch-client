@@ -6,7 +6,7 @@ const style={
 
 const Welcome = (props) => (
   <div style={style}>
-    <h1>Welcome</h1> 
+    <h1>hello</h1>
   </div>
 );
 

@@ -9,7 +9,7 @@ export default function(state=[], action={}){
       ...state,
       {
         id: shortid.generate(),
-        text: action.message.text,
+        text: action.message
       }
     ];
   case DELETE_FLASH_MESSAGE:

@@ -2,6 +2,7 @@ import React from "react";
 import validateEntryForm from "../../utilities/validateEntryForm";
 import { Form, Grid, Message, Button, Dropdown } from "semantic-ui-react";
 import { addEntry } from "../../actions/entryActions";
+import { addFlashMessage } from "../../actions/flashMessagesActions.js";
 import { connect } from "react-redux";
 import { dayOptions, monthOptions, yearOptions, categoryOptions } from "./EntryOptions";
 
@@ -41,7 +42,8 @@ class AddEntryForm extends React.Component {
     const { errors, isValid } = validateEntryForm(this.state);
     if(isValid){
       this.props.addEntry(this.state).then(() => {
-        this.context.router.push("/entries"); 
+        this.props.addFlashMessage("Entry added!");
+        this.context.router.push("/entries/addEntry");
       }).catch(err => {
         this.setState({
           errors: err
@@ -83,10 +85,10 @@ class AddEntryForm extends React.Component {
                 label="Description"
               />
               {
-                this.state.errors.description && 
-                <Message size="tiny" negative>
-                  <Message.Header>{ this.state.errors.description }</Message.Header>
-                </Message>
+              this.state.errors.description && 
+              <Message size="tiny" negative>
+                <Message.Header>{ this.state.errors.description }</Message.Header>
+              </Message>
               }
               <Form.Field
                 control={Dropdown}
@@ -98,10 +100,10 @@ class AddEntryForm extends React.Component {
                 label="Category"
               />
               {
-                this.state.errors.description && 
-                <Message size="tiny" negative>
-                  <Message.Header>{ this.state.errors.description }</Message.Header>
-                </Message>
+              this.state.errors.description && 
+              <Message size="tiny" negative>
+                <Message.Header>{ this.state.errors.description }</Message.Header>
+              </Message>
               } 
               <Form.Field
                 control={Dropdown}
@@ -114,10 +116,10 @@ class AddEntryForm extends React.Component {
                 label="Day"
               />
               {
-                this.state.errors.day && 
-                <Message size="tiny" negative>
-                  <Message.Header>{ this.state.errors.day }</Message.Header>
-                </Message>
+              this.state.errors.day && 
+              <Message size="tiny" negative>
+                <Message.Header>{ this.state.errors.day }</Message.Header>
+              </Message>
               } 
               <Form.Field
                 control={Dropdown}
@@ -130,10 +132,10 @@ class AddEntryForm extends React.Component {
                 label="Month"
               />  
               {
-                this.state.errors.month && 
-                <Message size="tiny" negative>
-                  <Message.Header>{ this.state.errors.month }</Message.Header>
-                </Message>
+              this.state.errors.month && 
+              <Message size="tiny" negative>
+                <Message.Header>{ this.state.errors.month }</Message.Header>
+              </Message>
               } 
               <Form.Field
                 control={Dropdown}
@@ -146,10 +148,10 @@ class AddEntryForm extends React.Component {
                 label="Year"
               /> 
               {
-                this.state.errors.year && 
-                <Message size="tiny" negative>
-                  <Message.Header>{ this.state.errors.year }</Message.Header>
-                </Message>
+              this.state.errors.year && 
+              <Message size="tiny" negative>
+                <Message.Header>{ this.state.errors.year }</Message.Header>
+              </Message>
               }   
             </Form>
             <br />
@@ -165,4 +167,4 @@ AddEntryForm.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-export default connect(null, { addEntry })(AddEntryForm);
+export default connect(null, { addEntry, addFlashMessage })(AddEntryForm);

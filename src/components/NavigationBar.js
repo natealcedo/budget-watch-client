@@ -23,8 +23,8 @@ class NavigationBar extends React.Component {
       <Menu.Menu position="right">
         <Dropdown item text="Entries">
           <Dropdown.Menu>
-            <Dropdown.Item  as={Link} to="entries/addEntry">Add Entry</Dropdown.Item>
-            <Dropdown.Item  as={Link} to="entries">Entries</Dropdown.Item>
+            <Dropdown.Item  as={Link} to="/entries/addEntry">Add Entry</Dropdown.Item>
+            <Dropdown.Item  as={Link} to="/entries">Entries</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item  as={Button} onClick={this.onUserLogout}>Logout</Menu.Item>

@@ -16,8 +16,8 @@ class FlashMessage extends React.Component {
   render(){
     const { text } = this.props;
     return (
-      <Message positive onDismiss={this.onClick} color="teal">  
-        <Message.Header >{ text } </Message.Header> 
+      <Message size="large" positive onDismiss={this.onClick} color="teal">  
+        <Message.Header> { text } </Message.Header> 
       </Message>
     );
   }
