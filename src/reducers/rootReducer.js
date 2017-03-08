@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
 
-import authentication from "../reducers/authentication";
+import authentication from "./authentication";
+import flashMessages from "./flashMessages";
 
 export default combineReducers({
-  authentication
+  authentication,
+  flashMessages
 });

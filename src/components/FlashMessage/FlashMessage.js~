@@ -1,0 +1,26 @@
+import { Message, Icon, Button } from "semantic-ui-react";
+import React from "react";
+
+class FlashMessage extends React.Component {
+  constructor(props){
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick(e){
+    e.preventDefault();
+    this.props.deleteFlashMessage(id);
+  }
+
+  render(){
+    const { type, message, text, id } = this.props;
+    switch(type){
+    case "success":
+      return (
+          <Message>
+            <Message.Header>{ text }, <Icon name="delete" on /></Message.Header> 
+          </Message>
+      );
+    }
+  }
+}
