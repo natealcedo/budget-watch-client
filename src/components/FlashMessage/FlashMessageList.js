@@ -6,7 +6,6 @@ import { deleteFlashMessage } from "../../actions/flashMessagesActions";
 
 class FlashMessageList extends React.Component {
   render() {
-    console.log(this.props.messages);
     const flashMessages = this.props.messages.map(flashMessage => 
       (<FlashMessage
         deleteFlashMessage={this.props.deleteFlashMessage}

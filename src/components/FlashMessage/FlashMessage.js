@@ -9,7 +9,6 @@ class FlashMessage extends React.Component {
 
   onClick(e){
     e.preventDefault();
-    console.log(this.props);
     this.props.deleteFlashMessage(this.props.id);
   }
 
