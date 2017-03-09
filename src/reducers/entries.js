@@ -1,4 +1,4 @@
-import { SET_ENTRIES } from "../actions/actionTypes";
+import { SET_ENTRIES, UNSET_ENTRIES } from "../actions/actionTypes";
 
 export default function(state=[], action={}){
   switch(action.type){
@@ -7,6 +7,8 @@ export default function(state=[], action={}){
       ...state,
       ...action.entries
     ]; 
+  case UNSET_ENTRIES:
+    return [];
   default: 
     return state;
   }

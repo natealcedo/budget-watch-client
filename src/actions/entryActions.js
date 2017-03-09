@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_ENTRIES } from "./actionTypes";
+import { SET_ENTRIES, UNSET_ENTRIES } from "./actionTypes";
 
 export function addEntry(data){
   return dispatch => {
@@ -15,14 +15,20 @@ export function getAllEntries(){
   };
 }
 
-function setEntries(entries){
+export function setEntries(entries){
   return {
     type: SET_ENTRIES,
     entries
   };
 }
 
+export function unsetEntries(){
+  return {
+    type: UNSET_ENTRIES
+  };
+}
+
 function deleteEntry(id){
   return {
-  }
+  };
 }
