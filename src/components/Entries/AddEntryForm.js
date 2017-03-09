@@ -43,7 +43,7 @@ class AddEntryForm extends React.Component {
     if(isValid){
       this.props.addEntry(this.state).then(() => {
         this.props.addFlashMessage("Entry added!");
-        this.context.router.push("/entries/addEntry");
+        this.context.router.push("/entries");
       }).catch(err => {
         this.setState({
           errors: err
@@ -66,7 +66,7 @@ class AddEntryForm extends React.Component {
           <Grid.Column width={14}>
             <Message
               header="Fill it up!" 
-              content="Fill in this form to add an entry"
+              content="Fill up this form to add an entry"
               attached
               color="teal"
             />
