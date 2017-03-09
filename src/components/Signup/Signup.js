@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { isEmpty } from "lodash";
 import SignupForm from "./SignupForm";
 import { isUserExists, userSignUp } from "../../actions/signupActions";
+import { addFlashMessage } from "../../actions/flashMessagesActions";
+
 
 class Signup extends React.Component {
 
@@ -36,6 +38,7 @@ class Signup extends React.Component {
     if(isEmpty(this.state.errors)){
       userSignUp(data)
         .then(res => {
+          this.props.addFlashMessage("Account created! Login to procceed!");
           this.context.router.push("/login");
         })
         .catch( err =>{
@@ -95,7 +98,8 @@ class Signup extends React.Component {
 
 Signup.propTypes = {
   userSignUp: React.PropTypes.func.isRequired,
-  isUserExists: React.PropTypes.func.isRequired
+  isUserExists: React.PropTypes.func.isRequired,
+  addFlashMessage: React.PropTypes.func.isRequired
 };
 
 Signup.contextTypes = {
@@ -105,7 +109,7 @@ Signup.contextTypes = {
 function mapStateToProps(state){
   return {
     isAuthenticated: state.authentication.isAuthenticated
-  }
+  };
 }
 
-export default connect( mapStateToProps, { isUserExists, userSignUp })(Signup);
+export default connect( mapStateToProps, { addFlashMessage, isUserExists, userSignUp })(Signup);
