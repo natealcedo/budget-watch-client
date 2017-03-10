@@ -35,9 +35,7 @@ class Entry extends React.Component {
       {text: "Year", value: "year"},
       {text: "Amount", value: "amount"}
     ];
-    const entryList = this.props.entries.sort((prev, curr) => {
-      return curr.year - prev.year;
-    }).map(entry => (       
+    const entryList = this.props.entries.map(entry => (       
       <EntryRow
         category={entry.category} 
         amount={entry.amount}
@@ -58,10 +56,10 @@ class Entry extends React.Component {
               <Table.Cell>
                 <Form.Field
                   control={Dropdown}
-                  fluid
+                  inline
                   options={options}
                   selection
-                  label="Sort Entries By"
+                  label="Sort Entries By: "
                   onChange={this.setSortFilter}
                 />
               </Table.Cell>

@@ -21,10 +21,18 @@ export default function(state=[], action={}){
       return state;
     }
   case SET_SORT:
-    const { sortFilter } = action;
-    return state.sort((prev, curr) => {
-      return curr[sortFilter] - prev[sortFilter];
-    });
+    console.log(action.sortFilter);
+    if(action.sortFilter === "category"){
+      return state.slice().sort((a,b) => {
+        if(a.category.toLowerCase() < b.category.toLowerCase()) return -1;
+        if(a.category.toLowerCase() > b.category.toLowerCase()) return 1;
+        return 0;
+      });
+    } else {
+      return state.slice().sort((prev, curr) => {
+        return curr[action.sortFilter] - prev[action.sortFilter];
+      });
+    }
   default: 
     return state;
   }
