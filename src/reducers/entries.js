@@ -1,4 +1,5 @@
-import { SET_ENTRIES, UNSET_ENTRIES } from "../actions/actionTypes";
+import { SET_ENTRIES, UNSET_ENTRIES, DELETE_ENTRY } from "../actions/actionTypes";
+import { findIndex } from "lodash";
 
 export default function(state=[], action={}){
   switch(action.type){
@@ -9,6 +10,16 @@ export default function(state=[], action={}){
     ]; 
   case UNSET_ENTRIES:
     return [];
+  case DELETE_ENTRY:
+    const index = findIndex(state, { _id: action.id }) ;
+    if(index >= 0){
+      return [
+        ...state.slice(0,index),
+        ...state.slice(index + 1)
+      ];
+    } else {
+      return state;
+    }
   default: 
     return state;
   }

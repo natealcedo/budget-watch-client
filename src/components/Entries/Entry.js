@@ -2,10 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { Container, Form, Table, Dropdown } from "semantic-ui-react";
 import { yearOptions } from "./EntryOptions";
-import { getAllEntries, unsetEntries } from "../../actions/entryActions";
+import { getAllEntries, unsetEntries, deleteEntry } from "../../actions/entryActions";
 import EntryRow from "./EntryRow";
 
 class Entry extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.deleteEntry = this.deleteEntry.bind(this);
+  }
 
   componentWillMount(){
     this.props.getAllEntries();
@@ -13,6 +18,11 @@ class Entry extends React.Component {
 
   componentWillUnmount(){
     this.props.unsetEntries();
+  }
+  
+  deleteEntry(id){
+    const data = { id };
+    this.props.deleteEntry(data);
   }
 
   render() {
@@ -28,8 +38,9 @@ class Entry extends React.Component {
         year={entry.year}
         id={entry._id}
         key={entry._id}
+        deleteEntry={this.deleteEntry}
       />
-    ));
+      ));
     return (
       <Container>
         <Table >
@@ -78,4 +89,4 @@ Entry.propTypes = {
   unsetEntries: React.PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, { getAllEntries, unsetEntries })(Entry);
+export default connect(mapStateToProps, { getAllEntries, unsetEntries, deleteEntry })(Entry);

@@ -17,10 +17,10 @@ function addEntryAction(data){
   };
 }
 
-function deleteEntryAction(id){
+function deleteEntryAction(entry){
   return {
     type: DELETE_ENTRY,
-    id
+    id: entry.id
   };
 }
 

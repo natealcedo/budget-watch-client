@@ -2,8 +2,17 @@ import React from "react";
 import { Table, Button } from "semantic-ui-react";
 
 class EntryRow extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+  onClick(e, data){
+    e.preventDefault();
+    this.props.deleteEntry(data.id);
+  }
   render() {
-    const { category, description, day, month, year, amount } = this.props;
+    const { id, category, description, day, month, year, amount } = this.props;
     return (
       <Table.Row>
         <Table.Cell>{ category }</Table.Cell>
@@ -12,7 +21,7 @@ class EntryRow extends React.Component {
         <Table.Cell>{ month }</Table.Cell>
         <Table.Cell>{ year }</Table.Cell>
         <Table.Cell>{ amount }</Table.Cell>
-        <Table.Cell><Button negative size="medium">Delete</Button></Table.Cell>
+        <Table.Cell><Button negative id={id} onClick={this.onClick} size="medium">Delete</Button></Table.Cell>
       </Table.Row>
     );
   }
