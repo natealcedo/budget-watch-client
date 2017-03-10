@@ -5,7 +5,6 @@ import App from "./components/App";
 import Entry from "./components/Entries/Entry";
 import AddEntry from "./components/Entries/AddEntry";
 import Login from "./components/Login/Login";
-import Welcome from "./components/Welcome/Welcome";
 import PageNotFound from "./components/PageNotFound";
 import Signup from "./components/Signup/Signup";
 import AuthenticateRoute from "./utilities/AuthenticateRoute";

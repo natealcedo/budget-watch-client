@@ -20,7 +20,7 @@ const LoginForm = ({ errors, loginSubmit, updateFieldState, isLoading, validateU
       <Grid.Column width={10}>
         <Message
           header="Welcome to Budget Watch" 
-          content="Fill in the form for more awesomeness"
+          content="Login to get the tracking going!"
           attached
           color="teal"
         />

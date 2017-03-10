@@ -13,7 +13,7 @@ const SignupForm = ({errors, updateFieldState, validatePassword, onSubmit, check
   <Container> 
     <Message attached color="blue" size="large">
       <Message.Header>Welcome!</Message.Header>
-      <p>Please fill in this form to get going!</p>
+      <p>Budget Watch is a small app to track where your money goes!</p>
     </Message>
     <Grid centered style={styles}>
       <Grid.Column width={10}>
