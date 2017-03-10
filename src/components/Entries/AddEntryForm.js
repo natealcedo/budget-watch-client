@@ -43,7 +43,7 @@ class AddEntryForm extends React.Component {
     if(isValid){
       this.props.addEntry(this.state).then(() => {
         this.props.addFlashMessage("Entry added!");
-        this.context.router.push("/entries");
+        this.context.router.push("/");
       }).catch(err => {
         this.setState({
           errors: err
