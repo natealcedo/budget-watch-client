@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Container, Form, Table, Dropdown } from "semantic-ui-react";
-import { yearOptions } from "./EntryOptions";
-import { getAllEntries, unsetEntries, deleteEntry } from "../../actions/entryActions";
+import { getAllEntries, unsetEntries, deleteEntry, sortEntries } from "../../actions/entryActions";
 import EntryRow from "./EntryRow";
 
 class Entry extends React.Component {
@@ -10,6 +9,7 @@ class Entry extends React.Component {
   constructor(props){
     super(props);
     this.deleteEntry = this.deleteEntry.bind(this);
+    this.setSortFilter = this.setSortFilter.bind(this);
   }
 
   componentWillMount(){
@@ -19,13 +19,22 @@ class Entry extends React.Component {
   componentWillUnmount(){
     this.props.unsetEntries();
   }
-  
+
   deleteEntry(id){
     const data = { id };
     this.props.deleteEntry(data);
   }
 
+  setSortFilter(e,data){
+    e.preventDefault();
+    this.props.sortEntries(data.value);
+  }
   render() {
+    const options = [
+      {text: "Category", value: "category"},
+      {text: "Year", value: "year"},
+      {text: "Amount", value: "amount"}
+    ];
     const entryList = this.props.entries.sort((prev, curr) => {
       return curr.year - prev.year;
     }).map(entry => (       
@@ -50,9 +59,10 @@ class Entry extends React.Component {
                 <Form.Field
                   control={Dropdown}
                   fluid
-                  options={yearOptions}
+                  options={options}
                   selection
-                  label="View Entries by Time Periods"
+                  label="Sort Entries By"
+                  onChange={this.setSortFilter}
                 />
               </Table.Cell>
             </Table.Row>
@@ -86,7 +96,12 @@ function mapStateToProps(state){
 Entry.propTypes = {
   entries: React.PropTypes.array.isRequired,
   getAllEntries: React.PropTypes.func.isRequired,
-  unsetEntries: React.PropTypes.func.isRequired
+  unsetEntries: React.PropTypes.func.isRequired,
+  sortEntries: React.PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, { getAllEntries, unsetEntries, deleteEntry })(Entry);
+export default connect(mapStateToProps, { 
+  getAllEntries,
+  unsetEntries, 
+  deleteEntry, 
+  sortEntries })(Entry);

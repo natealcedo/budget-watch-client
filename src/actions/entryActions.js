@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_ENTRIES, UNSET_ENTRIES, ADD_ENTRY, DELETE_ENTRY } from "./actionTypes";
+import { SET_ENTRIES, UNSET_ENTRIES, ADD_ENTRY, DELETE_ENTRY, SET_SORT } from "./actionTypes";
 
 export function addEntry(data){
   return dispatch => {
@@ -29,6 +29,13 @@ export function getAllEntries(){
     return axios.post("api/entry/getAll").then(res => {
       dispatch(setEntries(res.data.entries));
     });
+  };
+}
+
+export function sortEntries(sortFilter){
+  return {
+    type: SET_SORT,
+    sortFilter
   };
 }
 

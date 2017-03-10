@@ -1,4 +1,4 @@
-import { SET_ENTRIES, UNSET_ENTRIES, DELETE_ENTRY } from "../actions/actionTypes";
+import { SET_ENTRIES, UNSET_ENTRIES, DELETE_ENTRY, SET_SORT } from "../actions/actionTypes";
 import { findIndex } from "lodash";
 
 export default function(state=[], action={}){
@@ -20,6 +20,11 @@ export default function(state=[], action={}){
     } else {
       return state;
     }
+  case SET_SORT:
+    const { sortFilter } = action;
+    return state.sort((prev, curr) => {
+      return curr[sortFilter] - prev[sortFilter];
+    });
   default: 
     return state;
   }

@@ -6,3 +6,4 @@ export const SET_ENTRIES = "SET_ENTRIES";
 export const UNSET_ENTRIES = "UNSET_ENTRIES";
 export const SET_USER = "SET_USER";
 export const ADD_ENTRY = "ADD_ENTRY";
+export const SET_SORT = "SET_SORT";
