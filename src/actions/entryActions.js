@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_ENTRIES, UNSET_ENTRIES, ADD_ENTRY } from "./actionTypes";
+import { SET_ENTRIES, UNSET_ENTRIES, ADD_ENTRY, DELETE_ENTRY } from "./actionTypes";
 
 export function addEntry(data){
   return dispatch => {
@@ -16,6 +16,14 @@ function addEntryAction(data){
     data
   };
 }
+
+function deleteEntryAction(id){
+  return {
+    type: DELETE_ENTRY,
+    id
+  };
+}
+
 export function getAllEntries(){
   return dispatch => {
     return axios.post("api/entry/getAll").then(res => {
@@ -39,6 +47,13 @@ export function unsetEntries(){
 
 export function deleteEntry(id){
   return dispatch => {
-    return axios.delete("/api/entry", id);
+    return axios({
+      method: "delete",
+      url: "/api/entry",
+      data: id
+    }).then(res => {
+      dispatch(deleteEntryAction(id));
+      return res;
+    });
   };
 }
