@@ -62,9 +62,10 @@ class ViewEntriesByTime extends React.Component {
     }
   }
 
-  onClick(id){
-    const data = { id };
-    this.props.deleteEntry(data);
+  onClick(e, data){
+    e.preventDefault();
+    const { id } = data;
+    this.props.deleteEntry({ id });
   }
 
   setSortFilter(e,data){

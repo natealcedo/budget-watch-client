@@ -34,9 +34,10 @@ class Entry extends React.Component {
     this.props.unsetEntries();
   }
 
-  deleteEntry(id){
-    const data = { id };
-    this.props.deleteEntry(data);
+  deleteEntry(e, data){
+    e.preventDefault();
+    const { id } = data;
+    this.props.deleteEntry({ id });
   }
 
   setSortFilter(e,data){
