@@ -21,7 +21,6 @@ export default function(state=[], action={}){
       return state;
     }
   case SET_SORT:
-    console.log(action.sortFilter);
     if(action.sortFilter === "category"){
       return state.slice().sort((a,b) => {
         if(a.category.toLowerCase() < b.category.toLowerCase()) return -1;

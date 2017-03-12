@@ -35,7 +35,6 @@ export function getAllEntries(){
 export function getEntriesByYear({ year }){
   return dispatch => {
     return axios.post("/api/entry/getByYear", { year }).then(res => {
-      console.log("by year");
       dispatch(unsetEntries());
       dispatch(setEntries(res.data.entries));
     });
@@ -45,7 +44,6 @@ export function getEntriesByYear({ year }){
 export function getEntriesByMonth({ year, month }){
   return dispatch => {
     return axios.post("/api/entry/getByMonth", { year, month }).then(res => {
-      console.log("by month");
       dispatch(unsetEntries());
       dispatch(setEntries(res.data.entries));
     });
