@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Container, Form, Table, Dropdown, Message } from "semantic-ui-react";
-import { getAllEntries, unsetEntries, deleteEntry, sortEntries } from "../../actions/entryActions";
+import { getEntriesByMonth, unsetEntries, deleteEntry, sortEntries } from "../../actions/entryActions";
 import EntryRow from "./EntryRow";
 import { sortOptions } from "./EntryOptions";
 
@@ -11,10 +11,23 @@ class Entry extends React.Component {
     super(props);
     this.deleteEntry = this.deleteEntry.bind(this);
     this.setSortFilter = this.setSortFilter.bind(this);
+    this.state = {
+      month: "",
+      year: ""
+    };
   }
 
   componentWillMount(){
-    this.props.getAllEntries();
+    const date = new Date();
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    const data = { year, month };
+    this.props.getEntriesByMonth(data);
+    month = date.toString().split(" ")[1];
+    this.setState({
+      month,
+      year
+    });
   }
 
   componentWillUnmount(){
@@ -46,6 +59,10 @@ class Entry extends React.Component {
       ));
     return (
       <Container>
+        <Message>
+          <Message.Header>Home</Message.Header> 
+          <p>Here you view all of the entries for the month of {`${this.state.month} ${this.state.year}`}</p>
+        </Message>
         <Table >
           <Table.Header>
             <Table.Row>
@@ -95,13 +112,13 @@ function mapStateToProps(state){
 
 Entry.propTypes = {
   entries: React.PropTypes.array.isRequired,
-  getAllEntries: React.PropTypes.func.isRequired,
+  getEntriesByMonth: React.PropTypes.func.isRequired,
   unsetEntries: React.PropTypes.func.isRequired,
   sortEntries: React.PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, { 
-  getAllEntries,
+  getEntriesByMonth,
   unsetEntries, 
   deleteEntry, 
   sortEntries })(Entry);
