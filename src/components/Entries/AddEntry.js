@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Header } from "semantic-ui-react";
+import { Container, Message } from "semantic-ui-react";
 
 import AddEntryForm from "./AddEntryForm";
 
@@ -9,17 +9,16 @@ class AddEntry extends React.Component {
       display: "flex",
       justifyContent: "center",
       flexDirection: "column",
-      marginTop: "10vh"
-    };
-    const divStyle={
-      textAlign: "center",
       marginTop: "5vh"
     };
     return (
       <div>
-        <div style={divStyle}>
-          <Header as="h1">Add Entries to Track where your money goes!</Header>
-        </div>
+        <Container>
+          <Message>
+            <Message.Header> Add entries to track your spending</Message.Header> 
+            <p>Be honest to yourself!</p>
+          </Message> 
+        </Container>
         <Container style={formStyle}>
           <AddEntryForm /> 
         </Container>
