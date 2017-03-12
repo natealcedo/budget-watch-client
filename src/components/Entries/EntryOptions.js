@@ -44,7 +44,8 @@ const monthOptions = [
   {text: "September", value: "9"},
   {text: "October", value: "10"},
   {text: "November", value: "11"},
-  {text: "December", value: "12"}
+  {text: "December", value: "12"},
+  {text: "No month", value: ""}
 ];
 
 const yearOptions = [
