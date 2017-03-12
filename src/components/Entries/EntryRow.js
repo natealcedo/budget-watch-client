@@ -20,7 +20,7 @@ class EntryRow extends React.Component {
         <Table.Cell>{ day }</Table.Cell>
         <Table.Cell>{ month }</Table.Cell>
         <Table.Cell>{ year }</Table.Cell>
-        <Table.Cell>{ amount }</Table.Cell>
+        <Table.Cell>${ amount }</Table.Cell>
         <Table.Cell><Button negative id={id} onClick={this.onClick} size="medium">Delete</Button></Table.Cell>
       </Table.Row>
     );
