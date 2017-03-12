@@ -64,7 +64,9 @@ class ViewEntriesByTime extends React.Component {
   }
 
   onClick(id){
-    this.props.deleteEntry(id);
+    const data = { id };
+    console.log(data);
+    this.props.deleteEntry(data);
   }
 
   render() {
