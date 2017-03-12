@@ -25,6 +25,7 @@ class NavigationBar extends React.Component {
           <Dropdown.Menu>
             <Dropdown.Item  as={Link} to="/entries/addEntry">Add Entry</Dropdown.Item>
             <Dropdown.Item  as={Link} to="/entries/viewEntriesByTime">View By Time Period</Dropdown.Item>
+            <Dropdown.Item  as={Link} to="/analysis">Analyse Entries</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item  as={Button} onClick={this.onUserLogout}>Logout</Menu.Item>
@@ -39,7 +40,7 @@ class NavigationBar extends React.Component {
     return(
       <Menu pointing borderless inverted size="large" color="blue">
         <Menu.Header>
-          <Menu.Item as={Link} to="/">Budget Watch</Menu.Item>
+          <Menu.Item as={Link} to="/">Home</Menu.Item>
         </Menu.Header> 
         {
           isAuthenticated? authenticatedLinks: guestLinks
