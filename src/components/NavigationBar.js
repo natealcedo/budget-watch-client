@@ -24,6 +24,7 @@ class NavigationBar extends React.Component {
         <Dropdown item text="Entries">
           <Dropdown.Menu>
             <Dropdown.Item  as={Link} to="/entries/addEntry">Add Entry</Dropdown.Item>
+            <Dropdown.Item  as={Link} to="/entries/viewEntriesByTime">View By Time Period</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item  as={Button} onClick={this.onUserLogout}>Logout</Menu.Item>

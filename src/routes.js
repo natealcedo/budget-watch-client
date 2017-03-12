@@ -1,13 +1,14 @@
 import React from "react";
 import { Route, IndexRoute } from "react-router";
 
-import App from "./components/App";
-import Entry from "./components/Entries/Entry";
 import AddEntry from "./components/Entries/AddEntry";
+import App from "./components/App";
+import AuthenticateRoute from "./utilities/AuthenticateRoute";
+import Entry from "./components/Entries/Entry";
 import Login from "./components/Login/Login";
 import PageNotFound from "./components/PageNotFound";
 import Signup from "./components/Signup/Signup";
-import AuthenticateRoute from "./utilities/AuthenticateRoute";
+import ViewEntriesByTime from "./components/ViewEntriesByTime/ViewEntriesByTime";
 
 export default(
   <Route>
@@ -16,6 +17,7 @@ export default(
       <Route path="login" component={Login} />
       <Route path="signup" component={Signup} />
       <Route path="entries/addEntry" component={AuthenticateRoute(AddEntry)} />
+      <Route path="entries/viewEntriesByTime" component={AuthenticateRoute(ViewEntriesByTime)} />
     </Route>
     <Route path="*" component={PageNotFound} />
   </Route>
