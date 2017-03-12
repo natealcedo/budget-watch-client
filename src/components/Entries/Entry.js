@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Container, Form, Table, Dropdown } from "semantic-ui-react";
+import { Container, Form, Table, Dropdown, Message } from "semantic-ui-react";
 import { getAllEntries, unsetEntries, deleteEntry, sortEntries } from "../../actions/entryActions";
 import EntryRow from "./EntryRow";
+import { sortOptions } from "./EntryOptions";
 
 class Entry extends React.Component {
 
@@ -30,11 +31,6 @@ class Entry extends React.Component {
     this.props.sortEntries(data.value);
   }
   render() {
-    const options = [
-      {text: "Category", value: "category"},
-      {text: "Year", value: "year"},
-      {text: "Amount", value: "amount"}
-    ];
     const entryList = this.props.entries.map(entry => (       
       <EntryRow
         category={entry.category} 
@@ -57,7 +53,7 @@ class Entry extends React.Component {
                 <Form.Field
                   control={Dropdown}
                   inline
-                  options={options}
+                  options={sortOptions}
                   selection
                   label="Sort Entries By: "
                   onChange={this.setSortFilter}
@@ -80,6 +76,12 @@ class Entry extends React.Component {
             { entryList } 
           </Table.Body>
         </Table>
+        {
+        !this.props.entries.length  && 
+        <Message negative>
+          <Message.Header>No entries found</Message.Header> 
+        </Message>
+        }
       </Container>
     );
   }

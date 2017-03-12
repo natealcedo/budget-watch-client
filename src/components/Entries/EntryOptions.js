@@ -1,3 +1,9 @@
+const sortOptions = [
+  {text: "Category", value: "category"},
+  {text: "Year", value: "year"},
+  {text: "Amount", value: "amount"}
+];
+
 const dayOptions = [
   {text: "1", value: "1"},
   {text: "2", value: "2"},
@@ -49,6 +55,11 @@ const monthOptions = [
 ];
 
 const yearOptions = [
+  {text: "2010", value: "2010"},
+  {text: "2011", value: "2011"},
+  {text: "2012", value: "2012"},
+  {text: "2013", value: "2013"},
+  {text: "2014", value: "2014"},
   {text: "2015", value: "2015"},
   {text: "2016", value: "2016"},
   {text: "2017", value: "2017"},
@@ -62,4 +73,4 @@ const categoryOptions = [
   {text: "Leisure", value: "LEISURE"},
 ];
 
-export { dayOptions, monthOptions, yearOptions, categoryOptions };
+export { dayOptions, monthOptions, yearOptions, categoryOptions, sortOptions };

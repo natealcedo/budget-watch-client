@@ -3,8 +3,8 @@ import React from "react";
 import validateEntriesByTime from "../../utilities/validateEntriesByTime";
 import { Container, Form, Table, Dropdown, Button, Message } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { monthOptions, yearOptions } from "../Entries/EntryOptions";
-import { deleteEntry, getEntriesByYear, getEntriesByMonth, unsetEntries } from "../../actions/entryActions";
+import { deleteEntry, getEntriesByYear, getEntriesByMonth, unsetEntries, sortEntries } from "../../actions/entryActions";
+import { monthOptions, yearOptions, sortOptions } from "../Entries/EntryOptions";
 
 class ViewEntriesByTime extends React.Component {
 
@@ -19,21 +19,20 @@ class ViewEntriesByTime extends React.Component {
     this.updateFieldState = this.updateFieldState.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
-  }
-
-  componentWillMount(){
-
+    this.setSortFilter = this.setSortFilter.bind(this);
   }
 
   componentWillUnmount(){
     this.props.unsetEntries();
   }
+
   updateFieldState(e,data){
     e.preventDefault();
     this.setState({
       [data.name]: data.value
     });
   }
+
   onSubmit(e){
     e.preventDefault();
     const { isValid, errors } = validateEntriesByTime(this.state);
@@ -65,8 +64,12 @@ class ViewEntriesByTime extends React.Component {
 
   onClick(id){
     const data = { id };
-    console.log(data);
     this.props.deleteEntry(data);
+  }
+
+  setSortFilter(e,data){
+    e.preventDefault();
+    this.props.sortEntries(data.value);
   }
 
   render() {
@@ -117,7 +120,23 @@ class ViewEntriesByTime extends React.Component {
                 />
               </Table.Cell>
               <Table.Cell>
-                <Button loading={this.state.isLoading} fluid color="green" onClick={this.onSubmit}>Get Entries</Button>
+                <Form.Field
+                  control={Dropdown}
+                  inline
+                  options={sortOptions}
+                  selection
+                  label="Sort Entries By: "
+                  onChange={this.setSortFilter}
+                />
+              </Table.Cell>
+              <Table.Cell>
+                <Button
+                  loading={this.state.isLoading}
+                  color="green"
+                  fluid
+                  onClick={this.onSubmit}>
+                  Get Entries
+                </Button>
               </Table.Cell>
             </Table.Row>
           </Table.Header>
@@ -152,4 +171,4 @@ function mapStateToProps(state){
     entries: state.entries
   };
 }
-export default connect(mapStateToProps, { deleteEntry, getEntriesByYear, unsetEntries, getEntriesByMonth })(ViewEntriesByTime);
+export default connect(mapStateToProps, { deleteEntry, getEntriesByYear, unsetEntries, getEntriesByMonth, sortEntries })(ViewEntriesByTime);
