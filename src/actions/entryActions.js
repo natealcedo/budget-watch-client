@@ -26,11 +26,32 @@ function deleteEntryAction(entry){
 
 export function getAllEntries(){
   return dispatch => {
-    return axios.post("api/entry/getAll").then(res => {
+    return axios.post("/api/entry/getAll").then(res => {
       dispatch(setEntries(res.data.entries));
     });
   };
 }
+
+export function getEntriesByYear({ year }){
+  return dispatch => {
+    return axios.post("/api/entry/getByYear", { year }).then(res => {
+      console.log("by year");
+      dispatch(unsetEntries());
+      dispatch(setEntries(res.data.entries));
+    });
+  };
+}
+
+export function getEntriesByMonth({ year, month }){
+  return dispatch => {
+    return axios.post("/api/entry/getByMonth", { year, month }).then(res => {
+      console.log("by month");
+      dispatch(unsetEntries());
+      dispatch(setEntries(res.data.entries));
+    });
+  };
+}
+
 
 export function sortEntries(sortFilter){
   return {
