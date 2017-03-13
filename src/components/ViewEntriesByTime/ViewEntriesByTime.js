@@ -86,7 +86,7 @@ class ViewEntriesByTime extends React.Component {
         key={entry._id}
         deleteEntry={this.onClick}
       />
-      ));
+    ));
     return (
       <Container>
         <Table >
@@ -103,10 +103,10 @@ class ViewEntriesByTime extends React.Component {
                   label="Choose Year: "
                 />
                 {
-                this.state.errors.year &&
-                <Message negative compact>
-                  <Message.Header>Year is required</Message.Header> 
-                </Message>
+                  this.state.errors.year &&
+                  <Message negative compact>
+                    <Message.Header>Year is required</Message.Header> 
+                  </Message>
                 }
               </Table.Cell>
               <Table.Cell>
@@ -141,8 +141,6 @@ class ViewEntriesByTime extends React.Component {
                 </Button>
               </Table.Cell>
             </Table.Row>
-          </Table.Header>
-          <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Category</Table.HeaderCell>
               <Table.HeaderCell>Description</Table.HeaderCell>
@@ -158,21 +156,30 @@ class ViewEntriesByTime extends React.Component {
           </Table.Body>
         </Table>
         {
-        !this.props.entries.length  && 
-        <Message negative>
-          <Message.Header>No entries found</Message.Header> 
-        </Message>
+          !this.props.entries.length  && 
+          <Message negative>
+            <Message.Header>No entries found</Message.Header> 
+          </Message>
         }
       </Container>
     );
   }
 }
 
+ViewEntriesByTime.propTypes = {
+  deleteEntry: React.PropTypes.func.isRequired,
+  entries: React.PropTypes.array.isRequired,
+  getEntriesByYear: React.PropTypes.func.isRequired,
+  getEntriesByMonth: React.PropTypes.func.isRequired,
+  sortEntries: React.PropTypes.func.isRequired
+};
+
 function mapStateToProps(state){
   return {
     entries: state.entries
   };
 }
+
 export default connect(mapStateToProps, { 
   deleteEntry,
   getEntriesByYear,
