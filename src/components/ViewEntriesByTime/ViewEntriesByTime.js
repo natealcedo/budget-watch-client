@@ -134,6 +134,7 @@ class ViewEntriesByTime extends React.Component {
                 <Button
                   loading={this.state.isLoading}
                   color="green"
+                  inverted
                   fluid
                   onClick={this.onSubmit}>
                   Get Entries
@@ -172,4 +173,10 @@ function mapStateToProps(state){
     entries: state.entries
   };
 }
-export default connect(mapStateToProps, { deleteEntry, getEntriesByYear, unsetEntries, getEntriesByMonth, sortEntries })(ViewEntriesByTime);
+export default connect(mapStateToProps, { 
+  deleteEntry,
+  getEntriesByYear,
+  unsetEntries,
+  getEntriesByMonth,
+  sortEntries
+})(ViewEntriesByTime);
