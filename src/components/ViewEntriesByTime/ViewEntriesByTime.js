@@ -89,7 +89,7 @@ class ViewEntriesByTime extends React.Component {
     ));
     return (
       <Container>
-        <Table size="massive">
+        <Table size="large">
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>
