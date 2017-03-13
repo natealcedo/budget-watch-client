@@ -89,10 +89,10 @@ class ViewEntriesByTime extends React.Component {
     ));
     return (
       <Container>
-        <Table >
+        <Table size="massive">
           <Table.Header>
             <Table.Row>
-              <Table.Cell>
+              <Table.HeaderCell>
                 <Form.Field
                   control={Dropdown}
                   name="year"
@@ -108,8 +108,8 @@ class ViewEntriesByTime extends React.Component {
                     <Message.Header>Year is required</Message.Header> 
                   </Message>
                 }
-              </Table.Cell>
-              <Table.Cell>
+              </Table.HeaderCell>
+              <Table.HeaderCell>
                 <Form.Field
                   control={Dropdown}
                   name="month"
@@ -119,8 +119,8 @@ class ViewEntriesByTime extends React.Component {
                   label="Choose Month: "
                   onChange={this.updateFieldState}
                 />
-              </Table.Cell>
-              <Table.Cell>
+              </Table.HeaderCell>
+              <Table.HeaderCell>
                 <Form.Field
                   control={Dropdown}
                   inline
@@ -129,17 +129,18 @@ class ViewEntriesByTime extends React.Component {
                   label="Sort Entries By: "
                   onChange={this.setSortFilter}
                 />
-              </Table.Cell>
-              <Table.Cell>
+              </Table.HeaderCell>
+              <Table.HeaderCell>
                 <Button
                   loading={this.state.isLoading}
                   color="green"
+                  size="small"
                   inverted
                   fluid
                   onClick={this.onSubmit}>
                   Get Entries
                 </Button>
-              </Table.Cell>
+              </Table.HeaderCell>
             </Table.Row>
             <Table.Row>
               <Table.HeaderCell>Category</Table.HeaderCell>

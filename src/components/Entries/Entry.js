@@ -64,7 +64,7 @@ class Entry extends React.Component {
           <Message.Header>Home</Message.Header> 
           <p>Here you view all of the entries for thec curent month : {`${this.state.month} ${this.state.year}`}</p>
         </Message>
-        <Table >
+        <Table size="large">
           <Table.Header>
             <Table.Row>
               <Table.Cell>
