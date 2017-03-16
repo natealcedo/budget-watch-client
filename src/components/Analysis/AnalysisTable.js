@@ -75,7 +75,7 @@ const AnalysisTable = ({ entries }) => {
         <Table.Cell>{ highestEntry.day}</Table.Cell> 
         <Table.Cell>{ highestEntry.month}</Table.Cell> 
         <Table.Cell>{ highestEntry.year}</Table.Cell> 
-        <Table.Cell>{ highestEntry.amount}</Table.Cell> 
+        <Table.Cell>${ highestEntry.amount}</Table.Cell> 
       </Table.Row>
     </Table.Body> 
   );
